@@ -1,6 +1,5 @@
+import { Avatar, Comment } from '.'
 import { IPost } from '../types'
-import { Avatar } from './Avatar'
-import { Comment } from './Comment'
 import styles from './Post.module.css'
 
 interface PostProps {

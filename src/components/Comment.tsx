@@ -1,10 +1,10 @@
-import { ThumbsUp, Trash } from "phosphor-react";
-import styles from "./Comment.module.css";
-import { Avatar } from "./Avatar";
+import { ThumbsUp, Trash } from 'phosphor-react'
+import { Avatar } from '.'
+import styles from './Comment.module.css'
 
 export const Comment = () => (
   <div className={styles.comment}>
-    <Avatar source="https://github.com/hakuunabatata.png" />
+    <Avatar source='https://github.com/hakuunabatata.png' />
 
     <div className={styles.commentBox}>
       <div className={styles.commentContent}>
@@ -15,7 +15,7 @@ export const Comment = () => (
             <time dateTime={new Date().toString()}>Publicado há 1h</time>
           </div>
 
-          <button title="Deletar comentário">
+          <button title='Deletar comentário'>
             <Trash size={20} />
           </button>
         </header>
@@ -36,4 +36,4 @@ export const Comment = () => (
       </footer>
     </div>
   </div>
-);
+)
