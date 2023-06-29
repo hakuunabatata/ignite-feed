@@ -1,15 +1,23 @@
-import { Avatar } from "./Avatar";
-import { Comment } from "./Comment";
-import styles from "./Post.module.css";
+import { IPost } from '../types'
+import { Avatar } from './Avatar'
+import { Comment } from './Comment'
+import styles from './Post.module.css'
 
-export const Post = () => (
+interface PostProps {
+  post: IPost
+}
+
+export const Post = ({ post }: PostProps) => (
   <article className={styles.post}>
     <header>
       <div className={styles.author}>
-        <Avatar hasBorder source="https://github.com/hakuunabatata.png" />
+        <Avatar
+          hasBorder
+          source={post.author.avatar}
+        />
         <div className={styles.authorInfo}>
-          <strong>User</strong>
-          <span>Dev</span>
+          <strong>{post.author.name}</strong>
+          <span>{post.author.role}</span>
         </div>
       </div>
 
@@ -17,26 +25,17 @@ export const Post = () => (
     </header>
 
     <div className={styles.content}>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum adipisci
-        minima autem ut quos enim ullam hic earum tempore, placeat quo
-        voluptates molestias! Cupiditate harum, consectetur illum tenetur nisi
-        ad!
-      </p>
-      <p>
-        👌 <a href="">link.com</a>
-      </p>
-      <p>
-        <a href="">#lorem</a> <a href="">#ipsum</a>
-      </p>
+      {post.content.map(({ text, type }) =>
+        type === 'link' ? <a href='#'>{text}</a> : <p>{text}</p>
+      )}
     </div>
     <form className={styles.commentForm}>
       <strong>Deixe seu feedback</strong>
 
-      <textarea placeholder="Deixe um comentário" />
+      <textarea placeholder='Deixe um comentário' />
 
       <footer>
-        <button type="submit">Publicar</button>
+        <button type='submit'>Publicar</button>
       </footer>
     </form>
 
@@ -46,4 +45,4 @@ export const Post = () => (
       <Comment />
     </div>
   </article>
-);
+)
