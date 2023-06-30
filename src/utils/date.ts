@@ -43,3 +43,12 @@ export const dateDifToText = (date: Date): string => {
 
   return 'há pouco tempo'
 }
+
+export const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    hour: '2-digit',
+    minute: '2-digit',
+    year: 'numeric',
+  }).format(date)

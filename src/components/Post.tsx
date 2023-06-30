@@ -1,6 +1,6 @@
 import { Avatar, Comment } from '.'
 import { IPost } from '../types'
-import { dateDifToText } from '../utils'
+import { dateDifToText, formatDate } from '../utils'
 import styles from './Post.module.css'
 
 interface PostProps {
@@ -21,7 +21,7 @@ export const Post = ({ post }: PostProps) => (
         </div>
       </div>
 
-      <time dateTime={post.publishedAt.toString()}>
+      <time dateTime={formatDate(post.publishedAt)}>
         Publicado {dateDifToText(post.publishedAt)}
       </time>
     </header>
