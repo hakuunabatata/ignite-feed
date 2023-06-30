@@ -26,7 +26,7 @@ const posts: IPost[] = [
         text: '#lorem #ipsum',
       },
     ],
-    publishedAt: new Date(),
+    publishedAt: new Date('2023-06-26'),
   },
   {
     id: 2,
@@ -50,7 +50,7 @@ const posts: IPost[] = [
         text: 'hehehe',
       },
     ],
-    publishedAt: new Date(),
+    publishedAt: new Date('2021-12-12'),
   },
 ]
 
