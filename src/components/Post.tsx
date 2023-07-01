@@ -14,14 +14,20 @@ export const Post = ({ post }: PostProps) => {
 
   const saveNewCommentValue = (event: FormEvent) => {
     const element = event.target as HTMLTextAreaElement
+    element.setCustomValidity('')
     setNewComment(element.value)
   }
 
   const createNewComment = (event: FormEvent) => {
     event?.preventDefault()
 
-    setComments([...comments, newComment])
+    setComments([...comments, newComment.trim()])
     setNewComment('')
+  }
+
+  const invalidContent = (event: FormEvent) => {
+    const element = event.target as HTMLTextAreaElement
+    element.setCustomValidity('Esse campo é Obrigatório')
   }
 
   function deleteComment(content: string) {
@@ -63,10 +69,17 @@ export const Post = ({ post }: PostProps) => {
           placeholder='Deixe um comentário'
           value={newComment}
           onChange={saveNewCommentValue}
+          onInvalid={invalidContent}
+          required
         />
 
         <footer>
-          <button type='submit'>Publicar</button>
+          <button
+            disabled={newComment.length === 0}
+            type='submit'
+          >
+            Publicar
+          </button>
         </footer>
       </form>
 
