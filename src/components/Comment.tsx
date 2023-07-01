@@ -2,7 +2,11 @@ import { ThumbsUp, Trash } from 'phosphor-react'
 import { Avatar } from '.'
 import styles from './Comment.module.css'
 
-export const Comment = () => (
+interface CommentProps {
+  content: string
+}
+
+export const Comment = ({ content }: CommentProps) => (
   <div className={styles.comment}>
     <Avatar source='https://github.com/hakuunabatata.png' />
 
@@ -20,12 +24,7 @@ export const Comment = () => (
           </button>
         </header>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque fuga
-          nostrum amet cumque aliquam, rerum harum, similique reprehenderit
-          voluptatem doloremque quas. A facere sunt quisquam dignissimos sequi
-          in et quas?
-        </p>
+        <p>{content}</p>
       </div>
 
       <footer>

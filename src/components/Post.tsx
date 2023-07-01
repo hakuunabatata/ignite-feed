@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { Avatar, Comment } from '.'
 import { IPost } from '../types'
 import { dateDifToText, formatDate } from '../utils'
@@ -9,14 +9,19 @@ interface PostProps {
 }
 
 export const Post = ({ post }: PostProps) => {
-  const [comments, setComments] = useState(['A', 'B', 'C'])
+  const [comments, setComments] = useState(['Post Top!'])
+  const [newComment, setNewComment] = useState('')
 
-  const createNewComment = () => {
+  const saveNewCommentValue = (event: FormEvent) => {
+    const element = event.target as HTMLTextAreaElement
+    setNewComment(element.value)
+  }
+
+  const createNewComment = (event: FormEvent) => {
     event?.preventDefault()
 
-    console.log('hoho')
-
-    setComments([...comments, 'A'])
+    setComments([...comments, newComment])
+    setNewComment('')
   }
 
   return (
@@ -53,12 +58,17 @@ export const Post = ({ post }: PostProps) => {
         )}
       </div>
       <form
+        name='content'
         onSubmit={createNewComment}
         className={styles.commentForm}
       >
         <strong>Deixe seu feedback</strong>
 
-        <textarea placeholder='Deixe um comentário' />
+        <textarea
+          placeholder='Deixe um comentário'
+          value={newComment}
+          onChange={saveNewCommentValue}
+        />
 
         <footer>
           <button type='submit'>Publicar</button>
@@ -66,8 +76,11 @@ export const Post = ({ post }: PostProps) => {
       </form>
 
       <div className={styles.commentList}>
-        {comments.map((_, index) => (
-          <Comment key={index} />
+        {comments.map((comment, index) => (
+          <Comment
+            key={index}
+            content={comment}
+          />
         ))}
       </div>
     </article>
