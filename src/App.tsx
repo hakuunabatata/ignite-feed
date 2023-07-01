@@ -8,7 +8,7 @@ const posts: IPost[] = [
     id: 1,
     author: {
       id: 1,
-      name: 'User1',
+      name: 'Fulano',
       avatar: 'https://github.com/hakuunabatata.png',
       role: 'dev',
     },
@@ -32,8 +32,8 @@ const posts: IPost[] = [
     id: 2,
     author: {
       id: 2,
-      name: 'User2',
-      avatar: 'https://github.com/hakuunabatata.png',
+      name: 'Ciclano',
+      avatar: 'https://github.com/github.png',
       role: 'dever',
     },
     content: [

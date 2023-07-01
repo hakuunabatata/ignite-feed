@@ -24,6 +24,10 @@ export const Post = ({ post }: PostProps) => {
     setNewComment('')
   }
 
+  function deleteComment(content: string) {
+    setComments(comments.filter(comment => content !== comment))
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -44,18 +48,9 @@ export const Post = ({ post }: PostProps) => {
       </header>
 
       <div className={styles.content}>
-        {post.content.map(({ text, type }) =>
-          type === 'link' ? (
-            <a
-              href='#'
-              key={`${text}-${type}`}
-            >
-              {text}
-            </a>
-          ) : (
-            <p key={`${text}-${type}`}>{text}</p>
-          )
-        )}
+        {post.content.map(({ text, type }, index) => (
+          <p key={index}>{type === 'link' ? <a href=''>{text}</a> : text}</p>
+        ))}
       </div>
       <form
         name='content'
@@ -80,6 +75,7 @@ export const Post = ({ post }: PostProps) => {
           <Comment
             key={index}
             content={comment}
+            deleteComment={deleteComment}
           />
         ))}
       </div>
